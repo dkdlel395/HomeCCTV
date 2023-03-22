@@ -89,8 +89,8 @@
 
 - 프레임워크 
     - python >= 3.9.10
-    - opencv >=
-    - autokeras >=
+    - opencv >= 4.6.0.66
+    - autokeras >= 1.1.0
     - tensorflow >= 2.11.0
     - keras >= 2.11.0
     - pytorch >= 1.21.1
