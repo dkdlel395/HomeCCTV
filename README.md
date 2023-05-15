@@ -90,7 +90,7 @@
 
 
 ---
-## 8. 참고문헌(기타)
+## 6. 참고문헌(기타)
 - [마크다운(MarkDown) 사용법](https://goddaehee.tistory.com/307)
 - [[Cuda] Tensorflow GPU 딥러닝 개발 환경 구축 하기](https://angelplayer.tistory.com/310)
 - [[Colab/ngrok/vscode] Colab GPU - VSCode SSH 연동하여 local vscode에서 GPU 사용하기](https://polarcompass.tistory.com/206)
