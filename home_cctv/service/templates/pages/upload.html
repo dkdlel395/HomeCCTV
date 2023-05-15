@@ -1,0 +1,103 @@
+<!-- About -->
+<section id="about" class="three">
+  <div class="container">
+    <header>
+      <h2 class="alt">YOLOv8 모델을 이용한 화염 감지 테스트</h2>
+      <p>이미지 파일을 업로드 해주세요</p>
+    </header>
+    <footer>
+      <div>
+        <div style="padding: 100px; border: 1px solid black">
+          <form id="file_form">
+            <input type="file" id="input_file" name="input_file" />
+            <button onclick="test()" type="button" class="btn btn-primary">
+              사진 분석 시작
+            </button>
+          </form>
+        </div>
+        <br />
+        <div>
+          <a
+            onClick="window.location.reload(); location.href = '#main';"
+            style="cursor: pointer"
+            >[새로고침]</a
+          >
+        </div>
+      </div>
+    </footer>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="four">
+  <div class="container">
+    <header>
+      <h2 class="alt">결과</h2>
+      <p id="load_p">please upload your file!</p>
+    </header>
+    <footer>
+      <div>
+        <div style="padding: 10px; border: 1px solid black; height: 30%">
+          <img
+            id="res_img"
+            src="/static/images/no_img.gif"
+            style="object-fit: contain; width: 100%; height: 100%"
+          />
+        </div>
+        <br />
+        <div>
+          <a class="button" id="down_btn" onclick="download_img()"
+            >이미지 다운로드 하기</a
+          >
+        </div>
+      </div>
+      <br />
+      <div>
+        <a
+          onClick="window.location.reload(); location.href = '#main';"
+          style="cursor: pointer"
+          >[새로고침]</a
+        >
+      </div>
+    </footer>
+  </div>
+</section>
+
+<script>
+  function test() {
+    location.href = "#reslut";
+
+    document.getElementById("res_img").src = "/static/images/loading.png";
+    document.getElementById("load_p").innerHTML = "loading...";
+
+    const input_file = document.querySelector("#file_form");
+
+    let data = new FormData(input_file);
+    data.append("name", fn);
+
+    $.ajax({
+      type: "POST",
+      url: "/upload/load",
+      data: data,
+      contentType: false,
+      processData: false,
+
+      success: (res) => {
+        // console.log(res);
+        // console.log(res["msg"]);
+        let img = "data:image/png;base64," + res["msg"];
+        document.getElementById("res_img").src = img;
+        document.getElementById("load_p").innerHTML = "done!";
+      },
+    });
+  }
+
+  function download_img() {
+    var a = document.createElement("a");
+    a.href = document.getElementById("res_img").src;
+    a.download = "download.png";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }
+</script>

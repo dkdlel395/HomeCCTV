@@ -1,0 +1,40 @@
+{% extends 'base.html' %} {% block content %}
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <form method="post">
+      {{ form.csrf_token }} {% include "form_errors.html" %}
+      <div class="mb-3">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          class="form-control"
+          name="username"
+          id="username"
+          value="{{ form.username.data or '' }}"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="password">PassWord</label>
+        <input
+          type="password"
+          class="form-control"
+          name="password"
+          id="password"
+          value="{{ form.password.data or '' }}"
+        />
+      </div>
+      <br /><br />
+      <button type="submit" class="btn btn-primary">Login</button>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        formaction="{{ url_for('auth_bp.signup') }}"
+      >
+        Signup
+      </button>
+      <br /><br />
+    </form>
+  </div>
+</div>
+{% endblock %}
